@@ -2,7 +2,6 @@
 // Node module: @loopback/example-file-transfer
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
-
 import {
   BindingScope,
   config,
@@ -29,7 +28,8 @@ export class FileUploadProvider implements Provider<FileUploadHandler> {
     }
   }
 
-  value(): FileUploadHandler {
+  async value(): Promise<FileUploadHandler> {
     return multer(this.options).any();
   }
+
 }

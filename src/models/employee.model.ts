@@ -1,4 +1,4 @@
-import { Entity, model, property } from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 @model()
 export class Employee extends Entity {
@@ -35,11 +35,11 @@ export class Employee extends Entity {
   sex?: number;
 
   @property({
-    type: 'binary',
+    type: 'string',
     required: false,
 
   })
-  avatar?: Buffer;
+  avatar?: string;
 
 
   // Define well-known properties here
