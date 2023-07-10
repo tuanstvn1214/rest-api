@@ -34,15 +34,13 @@ import {File, FileUploadHandler} from '../types';
 export class EmployeeController {
   constructor(
     @service(CloudinaryService) private cloudinaryService: CloudinaryService,
-    @inject(FILE_UPLOAD_SERVICE) private handler: FileUploadHandler,
+    @inject(FILE_UPLOAD_SERVICE) private fileUploadHandler: FileUploadHandler,
     @repository(EmployeeRepository)
     public employeeRepository: EmployeeRepository,
   ) { }
   private static getFilesAndFields(request: any) {
     const uploadedFiles = request.files;
     const mapper = (f: globalThis.Express.Multer.File) => {
-      console.log(f);
-
       return ({
         buffer: f.buffer,
         fieldname: f.fieldname,
@@ -74,7 +72,7 @@ export class EmployeeController {
   ): Promise<Employee> {
     return new Promise<Employee>((resolve, reject) => {
 
-      this.handler(request, response, async (err: unknown) => {
+      this.fileUploadHandler(request, response, async (err: unknown) => {
         try {
           const filesAndFields = EmployeeController.getFilesAndFields(request)
           console.log('filesAndFields', filesAndFields);

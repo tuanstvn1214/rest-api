@@ -28,7 +28,7 @@ export class FileUploadProvider implements Provider<FileUploadHandler> {
     }
   }
 
-  async value(): Promise<FileUploadHandler> {
+  value(): FileUploadHandler {
     return multer(this.options).any();
   }
 
